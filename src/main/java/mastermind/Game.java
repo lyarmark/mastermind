@@ -28,6 +28,7 @@ public class Game {
 			int color = rand.nextInt(6);
 			solution[i] = colors[color];
 		}
+		
 	}
 	
 	public Color[] getColors(){
@@ -49,6 +50,7 @@ public class Game {
 		for(int i = 0; i < 4; i++){
 			if(tempGuesses[i].equals(solution[i])){
 				results[counter] = Color.RED;
+				counter++;
 			}
 		}
 		
@@ -78,5 +80,10 @@ public class Game {
 		}
 		
 		return results;
+	}
+	
+	//This is only for the test and should be deleted before being handed in:
+	public void setSolution(Color[] solution){
+		this.solution = solution;
 	}
 }
