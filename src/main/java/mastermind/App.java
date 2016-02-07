@@ -1,4 +1,4 @@
-package mastermind.mastermind;
+package mastermind;
 
 /**
  * Hello world!
