@@ -1,6 +1,7 @@
 package mastermind.mastermind;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
@@ -49,6 +50,31 @@ public class Game {
 			if(tempGuesses[i].equals(solution[i])){
 				results[counter] = Color.BLACK;
 			}
+		}
+		
+		int black = counter;
+		int white = 0;
+		
+		ArrayList<Integer> alreadyChecked = new ArrayList<Integer>();
+		//Look for the correct color, wrong place - for each color
+		//in the solution set, check the guesses to see if it's in there
+		for(Color color:solution){
+			for(int i = 0; i < 4; i++){
+				if(color.equals(tempGuesses[i]) && !alreadyChecked.contains(i)){
+					alreadyChecked.add(i);
+					white++;
+					break;
+				}
+			}
+		}
+		//The for loop picked up on the correct color & place, so
+		//now subtract the total amount of total corrects from the white
+		white-=black;
+		
+		while(white > 0){
+			results[counter] = Color.WHITE;
+			counter++;
+			white--;
 		}
 		
 		return results;
