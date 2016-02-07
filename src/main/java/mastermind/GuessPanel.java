@@ -26,4 +26,17 @@ public class GuessPanel extends JPanel{
 			add(pegs[i]);
 		}
 	}
+	
+	public Color[] getGuess(){
+		Color[] guesses = new Color[4];
+		
+		for(int i = 0; i < 4; i++){
+			if(pegs[i].getColor() == Color.white){
+				throw new GuessNotFullException();
+			}
+			guesses[i] = pegs[i].getColor();
+		}
+		
+		return guesses;
+	}
 }
