@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Board extends JFrame implements ActionListener {
+public class Board extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -40,19 +40,18 @@ public class Board extends JFrame implements ActionListener {
 
 		this.check = new JButton("CHECK/DONE/GUESS?");
 		this.check.setSize(200, 50);
+		check.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				game.addGuess(null);
+			}
+			
+		});
 		this.game = new Game();
 
 		add(heading, BorderLayout.NORTH);
 		add(guessesPanel, BorderLayout.CENTER);
 		add(check, BorderLayout.SOUTH);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == check) {
-			game.addGuess();
-		}
-
 	}
 
 }
