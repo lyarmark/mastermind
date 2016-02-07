@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Board extends JFrame implements ActionListener{
+public class Board extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -44,7 +44,7 @@ public class Board extends JFrame implements ActionListener{
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
 		guessesPanel.setBackground(new Color(255, 192, 203));
 		this.guesses = new GuessPanel[10];
-		row = 0; //holds what panel we're up to.
+		row = 0; // holds what panel we're up to.
 		for (GuessPanel g : this.guesses) {
 			g = new GuessPanel();
 			guessesPanel.add(g);
@@ -52,13 +52,13 @@ public class Board extends JFrame implements ActionListener{
 
 		this.check = new JButton("CHECK");
 		this.check.setSize(200, 50);
-		check.addActionListener(new ActionListener(){
+		check.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 				game.addGuess(null);
 				row++;
 			}
-			
+
 		});
 		this.game = new Game();
 
@@ -67,18 +67,18 @@ public class Board extends JFrame implements ActionListener{
 		JPanel colorSelection = new JPanel();
 		colorSelection.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
 		Color[] colors = game.getColors();
-		
-		for(final Color color: colors){
+
+		for (final Color color : colors) {
 			Peg peg = new Peg(color);
 			colorSelection.add(peg);
 			peg.addActionListener(this);
 		}
-		
+
 		bottom.add(colorSelection);
 		bottom.add(check);
 		JLabel space = new JLabel("                                                 ");
 		JLabel eastSpace = new JLabel("                                                 ");
-		space.setSize(new Dimension((getWidth()/4), getHeight()));
+		space.setSize(new Dimension((getWidth() / 4), getHeight()));
 		add(heading, BorderLayout.NORTH);
 		add(space, BorderLayout.WEST);
 		add(eastSpace, BorderLayout.EAST);
@@ -90,8 +90,8 @@ public class Board extends JFrame implements ActionListener{
 		Peg peg = (Peg) e.getSource();
 		lastColor = peg.getColor();
 	}
-	
-	public Color getLastColor(){
+
+	public Color getLastColor() {
 		return lastColor;
 	}
 

@@ -3,7 +3,6 @@ package mastermind;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 
 public class Peg extends JComponent{
