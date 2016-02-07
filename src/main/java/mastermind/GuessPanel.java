@@ -23,13 +23,6 @@ public class GuessPanel extends JPanel{
 		
 		for(int i = 0; i < 4; i++){
 			pegs[i] = new Peg(Color.white);
-			pegs[i].addActionListener(new ActionListener(){
-
-				public void actionPerformed(ActionEvent arg0) {
-					
-				}
-				
-			});
 			add(pegs[i]);
 		}
 	}

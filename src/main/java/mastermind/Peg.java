@@ -1,11 +1,14 @@
 package mastermind;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 
-public class Peg extends JComponent{
+public class Peg extends JComponent implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private Color color;
 	private int width;
@@ -37,5 +40,10 @@ public class Peg extends JComponent{
 	
 	public Color getColor(){
 		return color;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
