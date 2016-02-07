@@ -46,6 +46,7 @@ public class Board extends JFrame implements ActionListener {
 		guessesPanel.setBackground(new Color(255, 192, 203));
 		this.guesses = new GuessPanel[10];
 		row = 9; // holds what panel we're up to.
+		
 		for (GuessPanel g : this.guesses) {
 			g = new GuessPanel();
 			guessesPanel.add(g);
@@ -64,6 +65,8 @@ public class Board extends JFrame implements ActionListener {
 							.showMessageDialog(null,
 									"You have not filled up the required number of guesses.");
 				}
+				game.addGuess(null);
+				row++;
 			}
 
 		});
@@ -79,7 +82,6 @@ public class Board extends JFrame implements ActionListener {
 		for (int i = 0; i < colors.length; i++) {
 			colorSelection.add(new Peg(colors[i]));
 		}
-
 		bottom.add(colorSelection);
 		bottom.add(check);
 
