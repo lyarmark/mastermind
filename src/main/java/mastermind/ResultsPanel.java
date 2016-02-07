@@ -13,6 +13,7 @@ public class ResultsPanel extends JPanel {
 		setLayout(new GridLayout(2, 2));
 
 		setBackground(Color.cyan);
+		pegs = new Peg[4];
 		
 		for(int i = 0; i < 4; i++){
 			pegs[i] = new Peg(Color.black);
