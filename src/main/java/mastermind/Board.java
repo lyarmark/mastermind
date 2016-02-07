@@ -65,8 +65,6 @@ public class Board extends JFrame implements ActionListener {
 							.showMessageDialog(null,
 									"You have not filled up the required number of guesses.");
 				}
-				game.addGuess(null);
-				row++;
 			}
 
 		});
