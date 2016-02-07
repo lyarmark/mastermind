@@ -11,6 +11,7 @@ public class GuessPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ResultsPanel results;
 	private Peg[] pegs;
+	private int lastPiece;
 
 	public GuessPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -19,6 +20,7 @@ public class GuessPanel extends JPanel {
 		this.results = new ResultsPanel();
 		this.results.setSize(1500, 40);
 		pegs = new Peg[4];
+		lastPiece = 0;
 
 		add(results);
 
@@ -39,5 +41,14 @@ public class GuessPanel extends JPanel {
 		}
 
 		return guesses;
+	}
+	
+	public void setGuess(Color color){
+		if(lastPiece == 4){
+			
+		}else{
+			pegs[lastPiece].setColor(color);
+			lastPiece++;
+		}
 	}
 }

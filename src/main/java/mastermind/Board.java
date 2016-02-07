@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Board extends JFrame implements ActionListener {
+public class Board extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -76,7 +76,17 @@ public class Board extends JFrame implements ActionListener {
 		colorSelection.setSize(200, 200);
 		Color[] colors = game.getColors();
 		for (int i = 0; i < colors.length; i++) {
-			colorSelection.add(new Peg(colors[i]));
+			JButton button = new JButton();
+			button.setBackground(colors[i]);
+			button.addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent arg0) {
+					guesses[row].setGuess(getBackground());
+					repaint();
+				}
+				
+			});
+			colorSelection.add(button);
 		}
 
 		bottom.add(colorSelection);
@@ -85,11 +95,6 @@ public class Board extends JFrame implements ActionListener {
 		add(heading, BorderLayout.NORTH);
 		add(guessesPanel, BorderLayout.CENTER);
 		add(bottom, BorderLayout.SOUTH);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		Peg peg = (Peg) e.getSource();
-		lastColor = peg.getColor();
 	}
 
 	public Color getLastColor() {
