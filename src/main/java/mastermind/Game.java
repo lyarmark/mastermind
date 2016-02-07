@@ -18,7 +18,7 @@ public class Game {
 		colors[2] = Color.RED;
 		colors[3] = Color.GREEN;
 		colors[4] = Color.BLACK;
-		colors[5] = Color.WHITE;
+		colors[5] = Color.PINK;
 		
 		Random rand = new Random();
 		

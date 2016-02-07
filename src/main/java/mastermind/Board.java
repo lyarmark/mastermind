@@ -44,7 +44,7 @@ public class Board extends JFrame implements ActionListener{
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
 		guessesPanel.setBackground(new Color(255, 192, 203));
 		this.guesses = new GuessPanel[10];
-		row = 0; //holds what panel we're up to.
+		row = 9; //holds what panel we're up to.
 		for (GuessPanel g : this.guesses) {
 			g = new GuessPanel();
 			guessesPanel.add(g);
@@ -55,8 +55,8 @@ public class Board extends JFrame implements ActionListener{
 		check.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				game.addGuess(null);
-				row++;
+				game.addGuess(guesses[row].getGuess());
+				row--;
 			}
 			
 		});
