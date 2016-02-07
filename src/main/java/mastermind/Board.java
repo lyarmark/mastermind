@@ -14,9 +14,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Board extends JFrame implements ActionListener{
+public class Board extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -44,7 +45,7 @@ public class Board extends JFrame implements ActionListener{
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
 		guessesPanel.setBackground(new Color(255, 192, 203));
 		this.guesses = new GuessPanel[10];
-		row = 9; //holds what panel we're up to.
+		row = 9; // holds what panel we're up to.
 		for (GuessPanel g : this.guesses) {
 			g = new GuessPanel();
 			guessesPanel.add(g);
@@ -52,32 +53,41 @@ public class Board extends JFrame implements ActionListener{
 
 		this.check = new JButton("CHECK");
 		this.check.setSize(200, 50);
-		check.addActionListener(new ActionListener(){
+		check.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				game.addGuess(guesses[row].getGuess());
-				row--;
+				try {
+					game.addGuess(guesses[row].getGuess());
+					row--;
+				} catch (GuessNotFullException e) {
+					JOptionPane
+							.showMessageDialog(null,
+									"You have not filled up the required number of guesses.");
+				}
 			}
-			
+
 		});
 		this.game = new Game();
 
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
 		JPanel colorSelection = new JPanel();
-		colorSelection.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
+		colorSelection
+				.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
 		Color[] colors = game.getColors();
-		
-		for(Color color: colors){
-			colorSelection.add(new Peg(color));
+
+		for (int i = 0; i < colors.length; i++) {
+			colorSelection.add(new Peg(colors[i]));
 		}
-		
+
 		bottom.add(colorSelection);
 		bottom.add(check);
-		
-		JLabel space = new JLabel("                                                 ");
-		JLabel eastSpace = new JLabel("                                                 ");
-		space.setSize(new Dimension((getWidth()/4), getHeight()));
+
+		JLabel space = new JLabel(
+				"                                                 ");
+		JLabel eastSpace = new JLabel(
+				"                                                 ");
+		space.setSize(new Dimension((getWidth() / 4), getHeight()));
 		add(heading, BorderLayout.NORTH);
 		add(space, BorderLayout.WEST);
 		add(eastSpace, BorderLayout.EAST);
@@ -89,8 +99,8 @@ public class Board extends JFrame implements ActionListener{
 		Peg peg = (Peg) e.getSource();
 		lastColor = peg.getColor();
 	}
-	
-	public Color getLastColor(){
+
+	public Color getLastColor() {
 		return lastColor;
 	}
 
