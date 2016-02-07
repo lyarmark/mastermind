@@ -2,9 +2,11 @@ package mastermind;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import javax.swing.JButton;
 import javax.swing.JComponent;
 
-public class Peg extends JComponent {
+public class Peg extends JComponent{
 	private static final long serialVersionUID = 1L;
 	private Color color;
 	private int width;
@@ -32,5 +34,9 @@ public class Peg extends JComponent {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	public Color getColor(){
+		return color;
 	}
 }
