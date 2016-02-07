@@ -1,8 +1,8 @@
 package mastermind;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class GuessPanel extends JPanel {
@@ -10,13 +10,14 @@ public class GuessPanel extends JPanel {
 	private ResultsPanel results;
 
 	public GuessPanel() {
-		setLayout(new GridLayout(1, 5));
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.results = new ResultsPanel();
+		this.results.setSize(1500, 40);
 
 		add(results);
-		add(new Peg(Color.WHITE));
-		add(new Peg(Color.WHITE));
-		add(new Peg(Color.WHITE));
-		add(new Peg(Color.WHITE));
+		add(new Peg(Color.white, 'a'));
+		add(new Peg(Color.white, 'a'));
+		add(new Peg(Color.white, 'a'));
+		add(new Peg(Color.white, 'a'));
 	}
 }

@@ -9,12 +9,12 @@ public class ResultsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public ResultsPanel() {
-		setLayout(new GridLayout(2, 2));
+		setLayout(new GridLayout(2, 2, 0, 0));
 
 		setBackground(Color.cyan);
 		add(new Peg(Color.green));
 		add(new Peg(Color.blue));
 		add(new Peg(Color.pink));
-		add(new Peg(Color.WHITE));
+		add(new Peg(Color.white));
 	}
 }

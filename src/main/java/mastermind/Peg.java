@@ -7,9 +7,19 @@ import javax.swing.JComponent;
 public class Peg extends JComponent {
 	private static final long serialVersionUID = 1L;
 	private Color color;
+	private int width;
+	private int height;
 
 	public Peg(Color color) {
 		this.color = color;
+		this.width = 20;
+		this.height = 20;
+	}
+
+	public Peg(Color color, char c) {
+		this.color = color;
+		this.width = 30;
+		this.height = 30;
 	}
 
 	@Override
@@ -17,7 +27,7 @@ public class Peg extends JComponent {
 		super.paint(g);
 
 		g.setColor(this.color);
-		g.fillOval(0, 0, 50, 50);
+		g.fillOval(getWidth() / 2, getHeight() / 2, this.width, this.height);
 	}
 
 	public void setColor(Color color) {
