@@ -2,7 +2,6 @@ package mastermind;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Board extends JFrame{
+public class Board extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -42,50 +41,49 @@ public class Board extends JFrame{
 		this.guessesPanel = new JPanel();
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
 		this.guessesPanel.setBackground(new Color(255, 192, 203));
+
 		this.guesses = new GuessPanel[10];
 
 		this.row = 9; // holds what panel we're up to.
 
-		for (GuessPanel g : this.guesses) {
-			g = new GuessPanel();
-			guessesPanel.add(g);
+		for (int i = 0; i < guesses.length; i++) {
+			guesses[i] = new GuessPanel();
+			guessesPanel.add(guesses[i]);
 		}
 
 		this.check = new JButton("CHECK");
 		this.check.setSize(200, 50);
-		check.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					game.addGuess(guesses[row].getGuess());
-					row--;
-				} catch (GuessNotFullException e) {
-					JOptionPane.showMessageDialog(null, "You have not filled up the required number of guesses.");
-				}
-			}
-
-		});
+		this.check.addActionListener(this);
+		/*
+		 * check.addActionListener(new ActionListener() {
+		 * 
+		 * public void actionPerformed(ActionEvent arg0) { try {
+		 * game.addGuess(guesses[row].getGuess()); row--; } catch
+		 * (GuessNotFullException e) { JOptionPane.showMessageDialog(null,
+		 * "You have not filled up the required number of guesses."); } }
+		 * 
+		 * });
+		 */
 		this.game = new Game();
 
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
-		
-		
+
 		JPanel colorSelection = new JPanel();
 		colorSelection.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
-		colorSelection.setSize(200, 200);
 		Color[] colors = game.getColors();
+
 		for (int i = 0; i < colors.length; i++) {
 			JButton button = new JButton();
 			button.setBackground(colors[i]);
-			button.addActionListener(new ActionListener(){
+			button.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
 					guesses[row].setGuess(getBackground());
 					repaint();
 				}
-				
 			});
+
 			colorSelection.add(button);
 		}
 
@@ -99,6 +97,18 @@ public class Board extends JFrame{
 
 	public Color getLastColor() {
 		return lastColor;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == check) {
+			try {
+				game.addGuess(guesses[row].getGuess());
+				row--;
+			} catch (GuessNotFullException e1) {
+				JOptionPane.showMessageDialog(null, "You have not filled up the required number of guesses.");
+			}
+		}
 	}
 
 }

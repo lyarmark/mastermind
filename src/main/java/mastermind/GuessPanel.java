@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 public class GuessPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -45,7 +44,7 @@ public class GuessPanel extends JPanel {
 	
 	public void setGuess(Color color){
 		if(lastPiece == 4){
-			
+			//do nothing. guess is full
 		}else{
 			pegs[lastPiece].setColor(color);
 			lastPiece++;
