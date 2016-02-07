@@ -2,13 +2,15 @@ package mastermind;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Board extends JFrame {
+public class Board extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel heading;
@@ -44,4 +46,13 @@ public class Board extends JFrame {
 		add(guessesPanel, BorderLayout.CENTER);
 		add(check, BorderLayout.SOUTH);
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == check) {
+			game.addGuess();
+		}
+
+	}
+
 }
