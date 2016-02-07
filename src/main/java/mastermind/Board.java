@@ -68,14 +68,13 @@ public class Board extends JFrame implements ActionListener{
 		colorSelection.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
 		Color[] colors = game.getColors();
 		
-		for(final Color color: colors){
-			Peg peg = new Peg(color);
-			colorSelection.add(peg);
-			peg.addActionListener(this);
+		for(Color color: colors){
+			colorSelection.add(new Peg(color));
 		}
 		
 		bottom.add(colorSelection);
 		bottom.add(check);
+		
 		JLabel space = new JLabel("                                                 ");
 		JLabel eastSpace = new JLabel("                                                 ");
 		space.setSize(new Dimension((getWidth()/4), getHeight()));
@@ -83,7 +82,7 @@ public class Board extends JFrame implements ActionListener{
 		add(space, BorderLayout.WEST);
 		add(eastSpace, BorderLayout.EAST);
 		add(guessesPanel, BorderLayout.CENTER);
-		add(check, BorderLayout.SOUTH);
+		add(bottom, BorderLayout.SOUTH);
 	}
 
 	public void actionPerformed(ActionEvent e) {
