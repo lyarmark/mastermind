@@ -14,7 +14,7 @@ public class GuessPanel extends JPanel {
 
 	public GuessPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		//setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 192, 203));
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		this.results = new ResultsPanel();
 		this.results.setSize(1500, 40);

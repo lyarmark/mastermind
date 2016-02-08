@@ -40,7 +40,7 @@ public class Board extends JFrame implements ActionListener {
 
 		this.guessesPanel = new JPanel();
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
-		// this.guessesPanel.setBackground(new Color(255, 192, 203));
+		 this.guessesPanel.setBackground(new Color(255, 192, 203));
 
 		this.guesses = new GuessPanel[10];
 
