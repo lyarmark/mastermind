@@ -80,6 +80,13 @@ public class Game {
 			white--;
 		}
 
+		// no pegs of this color
+		if (counter == 0) {
+			for (int i = 0; i < results.length; i++) {
+				results[i] = Color.gray;
+			}
+		}
+
 		return results;
 	}
 
