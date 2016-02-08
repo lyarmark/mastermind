@@ -103,7 +103,8 @@ public class Board extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == check) {
 			try {
-				game.addGuess(guesses[row].getGuess());
+				Color[] results = game.addGuess(guesses[row].getGuess());
+				guesses[row].setResults(results);
 				row--;
 			} catch (GuessNotFullException e1) {
 				JOptionPane.showMessageDialog(null, "You have not filled up the required number of guesses.");

@@ -29,6 +29,10 @@ public class GuessPanel extends JPanel {
 		}
 	}
 
+	public void setResults(Color[] resultArray){
+		results.setResults(resultArray);
+	}
+	
 	public Color[] getGuess() {
 		Color[] guesses = new Color[4];
 
