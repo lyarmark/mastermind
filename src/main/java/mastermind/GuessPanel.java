@@ -29,10 +29,19 @@ public class GuessPanel extends JPanel {
 		}
 	}
 
-	public void setResults(Color[] resultArray){
+	public void setResults(Color[] resultArray) {
 		results.setResults(resultArray);
 	}
-	
+
+	public void undo() {
+		if (lastPiece > 0) {
+			lastPiece--;
+			pegs[lastPiece].setColor(Color.WHITE);
+			repaint();
+		}
+		//won't do anything if you press undo when there's nothing there to do
+	}
+
 	public Color[] getGuess() {
 		Color[] guesses = new Color[4];
 
@@ -45,11 +54,11 @@ public class GuessPanel extends JPanel {
 
 		return guesses;
 	}
-	
-	public void setGuess(Color color){
-		if(lastPiece == 4){
-			//do nothing. guess is full
-		}else{
+
+	public void setGuess(Color color) {
+		if (lastPiece == 4) {
+			// do nothing. guess is full
+		} else {
 			pegs[lastPiece].setColor(color);
 			lastPiece++;
 		}

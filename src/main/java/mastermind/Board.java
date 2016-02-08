@@ -2,6 +2,7 @@ package mastermind;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ public class Board extends JFrame implements ActionListener {
 	private JPanel guessesPanel;
 	private GuessPanel guesses[];
 	private JButton check;
+	private JButton undo;
 	private int row;
 	private Color lastColor;
 
@@ -42,8 +44,9 @@ public class Board extends JFrame implements ActionListener {
 
 	private void playAgain(String message) {
 		Object[] options = { "Play Again", "EXIT" };
-		int choice = JOptionPane.showOptionDialog(null, message, "Game Over", JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		int choice = JOptionPane.showOptionDialog(null, message, "Game Over",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+				options, options[0]);
 
 		if (choice == 0) {
 			game = new Game();
@@ -87,12 +90,14 @@ public class Board extends JFrame implements ActionListener {
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
 
 		JPanel colorSelection = new JPanel();
-		colorSelection.setLayout(new BoxLayout(colorSelection, BoxLayout.X_AXIS));
+		colorSelection
+				.setLayout(new GridLayout(1, 6));
 		Color[] colors = game.getColors();
 
 		for (int i = 0; i < colors.length; i++) {
-			final JButton button = new JButton();
+			final JButton button = new JButton(" ");
 			button.setBackground(colors[i]);
+			button.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 			lastColor = colors[i];
 			button.addActionListener(new ActionListener() {
 
@@ -105,8 +110,16 @@ public class Board extends JFrame implements ActionListener {
 			colorSelection.add(button);
 		}
 
+		undo = new JButton("Undo");
+		undo.addActionListener(this);
+
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
+		buttons.add(check);
+		buttons.add(undo);
+
 		bottom.add(colorSelection);
-		bottom.add(check);
+		bottom.add(buttons);
 
 		add(heading, BorderLayout.NORTH);
 		add(guessesPanel, BorderLayout.CENTER);
@@ -130,8 +143,16 @@ public class Board extends JFrame implements ActionListener {
 					playAgain("Sorry! You did not guess the secret code.");
 				}
 			} catch (GuessNotFullException e1) {
-				JOptionPane.showMessageDialog(null, "You have not filled up the required number of guesses.");
+				JOptionPane
+						.showMessageDialog(null,
+								"You have not filled up the required number of guesses.");
 			}
+		} else if (e.getSource() == undo) {
+			undo();
 		}
+	}
+
+	public void undo() {
+		guesses[row].undo();
 	}
 }
