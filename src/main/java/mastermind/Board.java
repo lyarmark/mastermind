@@ -40,7 +40,7 @@ public class Board extends JFrame implements ActionListener {
 
 		this.guessesPanel = new JPanel();
 		this.guessesPanel.setLayout(new GridLayout(10, 1));
-		this.guessesPanel.setBackground(new Color(255, 192, 203));
+		// this.guessesPanel.setBackground(new Color(255, 192, 203));
 
 		this.guesses = new GuessPanel[10];
 
@@ -54,16 +54,7 @@ public class Board extends JFrame implements ActionListener {
 		this.check = new JButton("CHECK");
 		this.check.setSize(200, 50);
 		this.check.addActionListener(this);
-		/*
-		 * check.addActionListener(new ActionListener() {
-		 * 
-		 * public void actionPerformed(ActionEvent arg0) { try {
-		 * game.addGuess(guesses[row].getGuess()); row--; } catch
-		 * (GuessNotFullException e) { JOptionPane.showMessageDialog(null,
-		 * "You have not filled up the required number of guesses."); } }
-		 * 
-		 * });
-		 */
+
 		this.game = new Game();
 
 		JPanel bottom = new JPanel();
@@ -79,7 +70,7 @@ public class Board extends JFrame implements ActionListener {
 			button.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
-					guesses[row].setGuess(getBackground());
+					guesses[row].setGuess(button.getBackground());
 					repaint();
 				}
 			});
