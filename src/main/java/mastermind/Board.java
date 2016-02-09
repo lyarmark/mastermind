@@ -23,6 +23,7 @@ public class Board extends JFrame implements ActionListener {
 	private GuessPanel guesses[];
 	private JButton check;
 	private JButton undo;
+	private JButton newGame;
 	private int row;
 	private Color lastColor;
 
@@ -112,11 +113,14 @@ public class Board extends JFrame implements ActionListener {
 
 		undo = new JButton("Undo");
 		undo.addActionListener(this);
+		newGame = new JButton("New Game");
+		newGame.addActionListener(this);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		buttons.add(check);
 		buttons.add(undo);
+		buttons.add(newGame);
 
 		bottom.add(colorSelection);
 		bottom.add(buttons);
@@ -149,6 +153,13 @@ public class Board extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == undo) {
 			undo();
+		} else if (e.getSource() == newGame){
+			game = new Game();
+
+			this.getContentPane().removeAll();
+			this.setUpGUI();
+			this.getContentPane().revalidate();
+			this.getContentPane().repaint();
 		}
 	}
 
