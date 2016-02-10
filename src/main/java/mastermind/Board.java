@@ -3,17 +3,20 @@ package mastermind;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class Board extends JFrame implements ActionListener {
 
@@ -35,10 +38,7 @@ public class Board extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(255, 192, 203));
 		setLayout(new BorderLayout());
-		InstructionDialog instructions = new InstructionDialog();
-		instructions.setVisible(true);
-		instructions.setAlwaysOnTop(true);
-
+		showInstructions();
 		setUpGUI();
 	}
 
@@ -46,11 +46,10 @@ public class Board extends JFrame implements ActionListener {
 		return lastColor;
 	}
 
-	private void playAgain(String message) {
+	private void playAgain(String message, ImageIcon icon) {
 		Object[] options = { "Play Again", "EXIT" };
-		int choice = JOptionPane.showOptionDialog(null, message, "Game Over",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-				options, options[0]);
+		int choice = JOptionPane.showOptionDialog(null, message, "Game Over", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 
 		if (choice == 0) {
 			game = new Game();
@@ -132,6 +131,21 @@ public class Board extends JFrame implements ActionListener {
 		add(bottom, BorderLayout.SOUTH);
 	}
 
+	private void showInstructions() {
+		JTextArea instructions = new JTextArea();
+		instructions.setText("Welcome to MasterMind!\n" + "The object of the game is to solve the secret code.\n"
+				+ "How to play:\n" + "Choose 4 colors from the row of buttons on the bottom.\n"
+				+ "Once you have made your selection, press the 'Check' button.\n"
+				+ "The panel of 4 colored circles to the left will demonstrate how many are correct.\n"
+				+ "A red circle means there is a color in the correct place.\n"
+				+ "A white circle means there is a correct color but it is not in the correct place.\n"
+				+ "If all four circles turn gray, there are no correct colors on the row.\n"
+				+ "If you mistakenly chose a color, select the undo button to delete the move.\n"
+				+ "Click 'OK' to continue.\n" + "Good Luck!\n");
+		JOptionPane.showMessageDialog(null, instructions);
+
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == check) {
 			try {
@@ -143,15 +157,14 @@ public class Board extends JFrame implements ActionListener {
 				// filled at they are sorted with red first
 				if (results[results.length - 1] == Color.red) {
 					// fireworks
-					playAgain("You Won!");
+					ImageIcon fireworks = new ImageIcon("Animated-fireworks-changing-colors.gif");
+					playAgain("You Won!", fireworks);
 				}
 				if (row < 0) {
-					playAgain("Sorry! You did not guess the secret code.");
+					playAgain("Sorry! You did not guess the secret code.", null);
 				}
 			} catch (GuessNotFullException e1) {
-				JOptionPane
-						.showMessageDialog(null,
-								"You have not filled up the required number of guesses.");
+				JOptionPane.showMessageDialog(null, "You have not filled up the required number of guesses.");
 			}
 		} else if (e.getSource() == undo) {
 			undo();
