@@ -35,6 +35,9 @@ public class Board extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(255, 192, 203));
 		setLayout(new BorderLayout());
+		InstructionDialog instructions = new InstructionDialog();
+		instructions.setVisible(true);
+		instructions.setAlwaysOnTop(true);
 
 		setUpGUI();
 	}
@@ -91,8 +94,7 @@ public class Board extends JFrame implements ActionListener {
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
 
 		JPanel colorSelection = new JPanel();
-		colorSelection
-				.setLayout(new GridLayout(1, 6));
+		colorSelection.setLayout(new GridLayout(1, 6));
 		Color[] colors = game.getColors();
 
 		for (int i = 0; i < colors.length; i++) {
@@ -153,7 +155,7 @@ public class Board extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == undo) {
 			undo();
-		} else if (e.getSource() == newGame){
+		} else if (e.getSource() == newGame) {
 			game = new Game();
 
 			this.getContentPane().removeAll();
