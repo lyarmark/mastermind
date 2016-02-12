@@ -8,7 +8,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,6 +41,12 @@ public class Board extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(255, 192, 203));
 		setLayout(new BorderLayout());
+		try {
+		    setIconImage(ImageIO.read(new File("marbles.jpg")));
+		}
+		catch (IOException exc) {
+		    exc.printStackTrace();
+		}
 		showInstructions();
 		setUpGUI();
 	}
@@ -119,8 +128,9 @@ public class Board extends JFrame implements ActionListener {
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
-		buttons.add(check);
+		
 		buttons.add(undo);
+		buttons.add(check);
 		buttons.add(newGame);
 
 		bottom.add(colorSelection);
