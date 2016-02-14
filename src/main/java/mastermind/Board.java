@@ -32,15 +32,18 @@ public class Board extends JFrame implements ActionListener {
 	private JButton newGame;
 	private int row;
 	private Color lastColor;
+	private int difficulty;
 
 	private Game game;
 
-	public Board() {
+	public Board(int difficulty) {
 		setTitle("Mastermind");
 		setSize(400, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(255, 192, 203));
 		setLayout(new BorderLayout());
+		this.difficulty = difficulty;
+		
 		try {
 		    setIconImage(ImageIO.read(new File("marbles.jpg")));
 		}
@@ -49,6 +52,7 @@ public class Board extends JFrame implements ActionListener {
 		}
 		showInstructions();
 		setUpGUI();
+		setVisible(true);
 	}
 
 	public Color getLastColor() {
@@ -61,7 +65,7 @@ public class Board extends JFrame implements ActionListener {
 				JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 
 		if (choice == 0) {
-			game = new Game();
+			game = new Game(difficulty);
 
 			this.getContentPane().removeAll();
 			this.setUpGUI();
@@ -88,7 +92,7 @@ public class Board extends JFrame implements ActionListener {
 		this.row = 9; // holds what panel we're up to.
 
 		for (int i = 0; i < guesses.length; i++) {
-			guesses[i] = new GuessPanel();
+			guesses[i] = new GuessPanel(difficulty);
 			guessesPanel.add(guesses[i]);
 		}
 
@@ -96,13 +100,13 @@ public class Board extends JFrame implements ActionListener {
 		this.check.setSize(200, 50);
 		this.check.addActionListener(this);
 
-		this.game = new Game();
+		this.game = new Game(difficulty);
 
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
 
 		JPanel colorSelection = new JPanel();
-		colorSelection.setLayout(new GridLayout(1, 6));
+		colorSelection.setLayout(new GridLayout(1, 8));
 		Color[] colors = game.getColors();
 
 		for (int i = 0; i < colors.length; i++) {
@@ -144,9 +148,9 @@ public class Board extends JFrame implements ActionListener {
 	private void showInstructions() {
 		JTextArea instructions = new JTextArea();
 		instructions.setText("Welcome to MasterMind!\n" + "The object of the game is to solve the secret code.\n"
-				+ "How to play:\n" + "Choose 4 colors from the row of buttons on the bottom.\n"
+				+ "How to play:\n" + "Choose " + difficulty + " colors from the row of buttons on the bottom.\n"
 				+ "Once you have made your selection, press the 'Check' button.\n"
-				+ "The panel of 4 colored circles to the left will demonstrate how many are correct.\n"
+				+ "The panel of colored circles to the left will demonstrate how many are correct.\n"
 				+ "A red circle means there is a color in the correct place.\n"
 				+ "A white circle means there is a correct color but it is not in the correct place.\n"
 				+ "If all four circles turn gray, there are no correct colors on the row.\n"
@@ -179,7 +183,7 @@ public class Board extends JFrame implements ActionListener {
 		} else if (e.getSource() == undo) {
 			undo();
 		} else if (e.getSource() == newGame) {
-			game = new Game();
+			game = new Game(difficulty);
 
 			this.getContentPane().removeAll();
 			this.setUpGUI();

@@ -12,18 +12,18 @@ public class GuessPanel extends JPanel {
 	private Peg[] pegs;
 	private int lastPiece;
 
-	public GuessPanel() {
+	public GuessPanel(int difficulty) {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(new Color(255, 192, 203));
 		setBorder(BorderFactory.createLineBorder(Color.black));
-		this.results = new ResultsPanel();
+		this.results = new ResultsPanel(difficulty);
 		this.results.setSize(1500, 40);
-		pegs = new Peg[4];
+		pegs = new Peg[difficulty];
 		lastPiece = 0;
 
 		add(results);
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < pegs.length; i++) {
 			pegs[i] = new Peg(Color.white, 'a');
 			add(pegs[i]);
 		}
@@ -43,9 +43,9 @@ public class GuessPanel extends JPanel {
 	}
 
 	public Color[] getGuess() {
-		Color[] guesses = new Color[4];
+		Color[] guesses = new Color[pegs.length];
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < pegs.length; i++) {
 			if (pegs[i].getColor() == Color.white) {
 				throw new GuessNotFullException();
 			}
@@ -56,7 +56,7 @@ public class GuessPanel extends JPanel {
 	}
 
 	public void setGuess(Color color) {
-		if (lastPiece == 4) {
+		if (lastPiece == pegs.length) {
 			// do nothing. guess is full
 		} else {
 			pegs[lastPiece].setColor(color);

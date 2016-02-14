@@ -22,7 +22,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
@@ -47,7 +47,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
@@ -73,7 +73,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
@@ -96,7 +96,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
@@ -122,7 +122,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
@@ -148,7 +148,7 @@ public class AppTest {
 		solution[2] = Color.PINK;
 		solution[3] = Color.RED;
 
-		Game game = new Game();
+		Game game = new Game(4);
 		game.setSolution(solution);
 
 		Color[] guess = new Color[4];
