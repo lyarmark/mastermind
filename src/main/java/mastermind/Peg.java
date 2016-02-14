@@ -13,14 +13,14 @@ public class Peg extends JComponent {
 
 	public Peg(Color color) {
 		this.color = color;
-		this.width = 20;
-		this.height = 20;
+		this.width = 15;
+		this.height = 15;
 	}
 
 	public Peg(Color color, char c) {
 		this.color = color;
-		this.width = 40;
-		this.height = 40;
+		this.width = 45;
+		this.height = 45;
 	}
 
 	@Override
