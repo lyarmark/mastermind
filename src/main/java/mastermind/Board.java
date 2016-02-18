@@ -58,7 +58,7 @@ public class Board extends JFrame implements ActionListener {
 
 	private void playAgain(String message, ImageIcon icon) {
 		Object[] options = { "Play Again", "EXIT" };
-		int choice = JOptionPane.showOptionDialog(null, message, "Game Over", JOptionPane.YES_NO_OPTION,
+		int choice = JOptionPane.showOptionDialog(this, message, "Game Over", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 
 		if (choice == 0) {
