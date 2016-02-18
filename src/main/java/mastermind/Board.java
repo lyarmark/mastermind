@@ -41,12 +41,11 @@ public class Board extends JFrame implements ActionListener {
 		setBackground(new Color(255, 192, 203));
 		setLayout(new BorderLayout());
 		this.difficulty = difficulty;
-		
+
 		try {
-		    setIconImage(ImageIO.read(new File("marbles.jpg")));
-		}
-		catch (IOException exc) {
-		    exc.printStackTrace();
+			setIconImage(ImageIO.read(new File("marbles.jpg")));
+		} catch (IOException exc) {
+			exc.printStackTrace();
 		}
 		showInstructions();
 		setUpGUI();
@@ -63,6 +62,9 @@ public class Board extends JFrame implements ActionListener {
 				JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 
 		if (choice == 0) {
+			DifficultyFrame difficultyFrame = new DifficultyFrame(this);
+			difficultyFrame.setVisible(true);
+
 			game = new Game(difficulty);
 
 			this.getContentPane().removeAll();
@@ -130,7 +132,7 @@ public class Board extends JFrame implements ActionListener {
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
-		
+
 		buttons.add(undo);
 		buttons.add(check);
 		buttons.add(newGame);
@@ -141,6 +143,20 @@ public class Board extends JFrame implements ActionListener {
 		add(heading, BorderLayout.NORTH);
 		add(guessesPanel, BorderLayout.CENTER);
 		add(bottom, BorderLayout.SOUTH);
+	}
+
+	public void setDifficulty(int d) {
+
+		if (this.difficulty != d) {
+			this.difficulty = d;
+
+			game = new Game(difficulty);
+
+			this.getContentPane().removeAll();
+			this.setUpGUI();
+			this.getContentPane().revalidate();
+			this.getContentPane().repaint();
+		}
 	}
 
 	private void showInstructions() {

@@ -3,6 +3,7 @@ package mastermind;
 
 public class PlayMastermind {
 	public static void main(String[] args) {
-		new DifficultyFrame();
+		Board board = new Board(4);
+		new DifficultyFrame(board);
 	}
 }

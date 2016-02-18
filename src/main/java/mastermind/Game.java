@@ -94,7 +94,7 @@ public class Game {
 		return results;
 	}
 
-	// This is only for the test and should be deleted before being handed in:
+	//for the tests
 	public void setSolution(Color[] solution) {
 		this.solution = solution;
 	}
