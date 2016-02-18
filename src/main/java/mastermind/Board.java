@@ -62,7 +62,7 @@ public class Board extends JFrame implements ActionListener {
 				JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 
 		if (choice == 0) {
-			DifficultyFrame difficultyFrame = new DifficultyFrame(this);
+			DifficultyDialog difficultyFrame = new DifficultyDialog(this);
 			difficultyFrame.setVisible(true);
 
 			game = new Game(difficulty);
@@ -188,7 +188,7 @@ public class Board extends JFrame implements ActionListener {
 		} else if (e.getSource() == undo) {
 			undo();
 		} else if (e.getSource() == newGame) {
-			DifficultyFrame difficultyFrame = new DifficultyFrame(this);
+			DifficultyDialog difficultyFrame = new DifficultyDialog(this);
 			difficultyFrame.setVisible(true);
 
 			game = new Game(difficulty);

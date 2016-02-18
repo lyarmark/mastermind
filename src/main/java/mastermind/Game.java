@@ -98,4 +98,8 @@ public class Game {
 	public void setSolution(Color[] solution) {
 		this.solution = solution;
 	}
+	
+	public Color[] getSolution(){
+		return solution;
+	}
 }

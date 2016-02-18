@@ -4,29 +4,37 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
+import javax.swing.JRadioButton;
 
-public class DifficultyFrame extends JFrame implements ActionListener {
+public class DifficultyDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	JButton easy, medium, hard;
+	JRadioButton easy, medium, hard;
 	Board board;
 
-	public DifficultyFrame(Board board) {
+	public DifficultyDialog(Board board) {
 		setTitle("Choose Difficulty");
 		setSize(300, 150);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
 		this.board = board;
 
-		easy = new JButton("Easy - 4 pieces in solution");
+		easy = new JRadioButton("Easy - 4 pieces in solution");
 		easy.addActionListener(this);
-		medium = new JButton("Medium - 5 pieces in solution");
+		medium = new JRadioButton("Medium - 5 pieces in solution");
 		medium.addActionListener(this);
-		hard = new JButton("Hard - 6 pieces in solution");
+		hard = new JRadioButton("Hard - 6 pieces in solution");
 		hard.addActionListener(this);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(easy);
+		group.add(medium);
+		group.add(hard);
+		
 		setVisible(true);
 
 		add(easy);
