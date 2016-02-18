@@ -66,12 +66,7 @@ public class Board extends JFrame implements ActionListener {
 			difficultyFrame.setVisible(true);
 
 			game = new Game(difficulty);
-
-			this.getContentPane().removeAll();
-			this.setUpGUI();
-			this.getContentPane().revalidate();
-			this.getContentPane().repaint();
-
+			resetGUI();
 		} else if (choice == 1) {
 			this.dispose();
 		}
@@ -151,11 +146,7 @@ public class Board extends JFrame implements ActionListener {
 			this.difficulty = d;
 
 			game = new Game(difficulty);
-
-			this.getContentPane().removeAll();
-			this.setUpGUI();
-			this.getContentPane().revalidate();
-			this.getContentPane().repaint();
+			resetGUI();
 		}
 	}
 
@@ -197,16 +188,22 @@ public class Board extends JFrame implements ActionListener {
 		} else if (e.getSource() == undo) {
 			undo();
 		} else if (e.getSource() == newGame) {
-			game = new Game(difficulty);
+			DifficultyFrame difficultyFrame = new DifficultyFrame(this);
+			difficultyFrame.setVisible(true);
 
-			this.getContentPane().removeAll();
-			this.setUpGUI();
-			this.getContentPane().revalidate();
-			this.getContentPane().repaint();
+			game = new Game(difficulty);
+			resetGUI();
 		}
 	}
 
 	public void undo() {
 		guesses[row].undo();
+	}
+
+	private void resetGUI() {
+		this.getContentPane().removeAll();
+		this.setUpGUI();
+		this.getContentPane().revalidate();
+		this.getContentPane().repaint();
 	}
 }
